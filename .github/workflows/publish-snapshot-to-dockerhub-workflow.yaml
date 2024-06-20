@@ -9,8 +9,10 @@ on:
     paths:
     - 'apps/**'
     - '.github/workflows/publish-snapshot-to-dockerhub-workflow.yaml'
+    - 'README.md'
     branches:
     - 'master'
+    - 'main'
     - 'release-*'
 
 jobs:
@@ -59,6 +61,7 @@ jobs:
             # TODO we probably want something smarter, but the 'pattern' type runs only on tags
             # set 'snapshot' tag for 'master' branch
             type=raw,value=snapshot,enable=${{ github.ref == format('refs/heads/{0}', 'master') }}
+            type=raw,value=snapshot,enable=${{ github.ref == format('refs/heads/{0}', 'main') }}
             # set '1.2-snapshot' tag for 'release-1.2' branch
             type=raw,value=1.2-snapshot,enable=${{ github.ref == format('refs/heads/{0}', 'release-1.2') }}
             # set '1.1-snapshot' tag for 'release-1.1' branch
