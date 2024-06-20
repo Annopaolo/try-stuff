@@ -10,3 +10,5 @@ And again.
 And again.
 
 aaaa
+
+Add a release-1.0 line, whoa!
