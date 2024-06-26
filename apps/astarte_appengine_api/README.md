@@ -4,4 +4,4 @@
 
 ## Installation
 
-Don't. Do not. D'nt.
+Don't. Do not. D'nt. oD'tn.
