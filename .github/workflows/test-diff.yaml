@@ -1,0 +1,40 @@
+# GitHub recommends pinning actions to a commit SHA.
+# To get a newer version, you will need to update the SHA.
+# You can also reference a tag or branch, but the action may change without warning.
+
+name: Publish snapshot tools Docker images
+
+on:
+  push:
+    paths:
+    - '*'
+    branches:
+    - 'master'
+    - 'main'
+    - 'release-*'
+
+jobs:
+  test-diff:
+    name: AAAAAAAAA
+    runs-on: ubuntu-22.04
+    permissions:
+      packages: write
+      contents: read
+      attestations: write
+      id-token: write
+
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v4
+
+      - name: bash magic to check which files have changed
+        id: bash-fu
+        run: |
+          export BASE_REF="$(echo ${{ github.ref }} | sed 's,refs/heads/,,' )"
+          export CHANGED_DIRS="$(git diff ${BASE_REF} --name-only | grep "apps\/\|tools\/" | cut -d "/" -f 1,2 | uniq)"
+          echo "Changed dirs: $CHANGED_DIRS"
+          echo "CHANGED_DIRS=$CHANGED_DIRS" >> "$GITHUB_OUTPUT"
+
+      - name: Test output
+        run: |
+          echo "Out: ${{ steps.bash-fu.outputs.CHANGED_DIRS }}"
