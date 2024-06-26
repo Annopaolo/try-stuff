@@ -1,2 +1,2 @@
 FROM alpine
-CMD ["/bin/sh", "-c", "echo 'It works! AAA AAAAAAA'"]
+CMD ["/bin/sh", "-c", "echo 'It works! AAA AAAAAAA AAAAAAAAAAAAAAAAAAAAAAA'"]
