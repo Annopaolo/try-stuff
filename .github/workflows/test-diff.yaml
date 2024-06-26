@@ -29,7 +29,7 @@ jobs:
         id: bash-fu
         run: |
           export BASE_REF="$(echo ${{ github.ref }} | sed 's,refs/heads/,,' )"
-          export CHANGED_DIRS="$(git diff ${BASE_REF} --name-only | grep "apps\/\|tools\/" | cut -d "/" -f 1,2 | uniq)"
+          export CHANGED_DIRS="$(echo $(git diff ${BASE_REF} --name-only | grep "apps\/\|tools\/" | cut -d "/" -f 1,2 | uniq))"
           echo "Changed dirs: $CHANGED_DIRS"
           echo "CHANGED_DIRS=$CHANGED_DIRS" >> "$GITHUB_OUTPUT"
 
