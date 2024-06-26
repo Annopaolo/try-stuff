@@ -4,4 +4,4 @@
 
 ## Installation
 
-Don't.
+Don't. Do not.
