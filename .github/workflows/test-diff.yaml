@@ -6,8 +6,6 @@ name: Test diff
 
 on:
   push:
-    paths:
-    - '*'
     branches:
     - 'master'
     - 'main'
