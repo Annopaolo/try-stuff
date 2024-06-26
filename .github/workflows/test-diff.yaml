@@ -25,11 +25,16 @@ jobs:
       - name: Check out the repo
         uses: actions/checkout@v4
 
+      - name: I'm going crazy
+        id: aaa
+        run: |
+          export BASE_REF="$(echo ${{ github.ref }} | sed 's,refs/heads/,,' )"
+          echo "BASE_REF=$BASE_REF" >> "$GITHUB_OUTPUT"
+
       - name: bash magic to check which files have changed
         id: bash-fu
         run: |
-          export BASE_REF="$(echo ${{ github.ref }} | sed 's,refs/heads/,,' )"
-          export CHANGED_DIRS="$(echo $(git diff ${BASE_REF} --name-only | grep "apps\/\|tools\/" | cut -d "/" -f 1,2 | uniq))"
+          export CHANGED_DIRS="$(echo $(git diff ${{ steps.bash-fu.outputs.BASE_REF }} --name-only | grep "apps\/\|tools\/" | cut -d "/" -f 1,2 | uniq))"
           echo "Changed dirs: $CHANGED_DIRS"
           echo "CHANGED_DIRS=$CHANGED_DIRS" >> "$GITHUB_OUTPUT"
 
