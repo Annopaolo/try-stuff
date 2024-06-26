@@ -2,22 +2,21 @@
 # To get a newer version, you will need to update the SHA.
 # You can also reference a tag or branch, but the action may change without warning.
 
-name: Publish snapshot Docker images
+name: Publish snapshot tools Docker images
 
 on:
   push:
     paths:
-    - 'apps/**'
-    - '.github/workflows/publish-snapshot-to-dockerhub-workflow.yaml'
+    - 'tools/**'
+    - '.github/workflows/publish-snapshot-tools-to-dockerhub-workflow.yaml'
     - 'README.md'
-    - 'Dockerfile'
     branches:
     - 'master'
     - 'main'
     - 'release-*'
 
 jobs:
-  push_snapshot_to_registry:
+  push_snapshot_tools_to_registry:
     name: Push Docker images to Docker Hub
     runs-on: ubuntu-22.04
     permissions:
@@ -29,18 +28,11 @@ jobs:
       fail-fast: true
       matrix:
         app:
-        - astarte_appengine_api
-        - astarte_trigger_engine
+        - astarte_device_fleet_simulator
         # TODO change this
-        # - astarte_data_updater_plant
-        # - astarte_housekeeping
-        # - astarte_housekeeping_api
-        # - astarte_pairing
-        # - astarte_pairing_api
-        # - astarte_realm_management
-        # - astarte_realm_management_api
-    # TODO change this
-    # needs: [test-coverage, test-build-container, end-to-end-test]
+        # - astarte_e2e
+        # - astarte_export
+        # - astarte_import
     steps:
       - name: Check out the repo
         uses: actions/checkout@v4
@@ -72,8 +64,8 @@ jobs:
         id: push-apps
         uses: docker/build-push-action@3b5e8027fcad23fda98b2e3ac259d8d67585f671
         with:
-          context: apps/${{ matrix.app }}
-          file: Dockerfile
+          context: tools/${{ matrix.app }}
+          file: tools/${{ matrix.app }}/Dockerfile
           push: true
           tags: ${{ steps.meta-apps.outputs.tags }}
           labels: ${{ steps.meta-apps.outputs.labels }}
