@@ -1,0 +1,29 @@
+# GitHub recommends pinning actions to a commit SHA.
+# To get a newer version, you will need to update the SHA.
+# You can also reference a tag or branch, but the action may change without warning.
+
+name: Test calling
+
+on:
+  push:
+    branches:
+    - 'master'
+    - 'release-*'
+
+jobs:
+  called-workflow:
+    uses: ./.github/workflows/test-called.yaml
+    secrets: inherit
+
+
+  calling:
+    name: Call another workflow
+    runs-on: ubuntu-latest
+    needs:
+    - called-workflow
+    steps:
+      - name: Big step for mankind
+        run: echo "Calling workflow says ${{ secrets.USELESS_SECRET }}"
+      - name: Small step for man
+        run: echo "End calling workflow"
+        shell: bash
