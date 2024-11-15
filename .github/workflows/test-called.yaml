@@ -12,7 +12,8 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-    - name: Echo a value from a secret
-      run: |
-        echo "Called workflow says ${{ secrets.USELESS_SECRET }}"
-      shell: bash
+    - name: "check is USELESS_SECRET exists"
+        env: 
+            super_secret: ${{ secrets.USELESS_SECRET }}
+        if: ${{ env.super_secret == '' }}
+        run: echo "the secret \'USELESS_SECRET\' does not exist"
