@@ -3,7 +3,7 @@ name: Test calling
 on:
   push:
     branches:
-    - 'master'
+    - 'main'
     - 'release-*'
 
 jobs:

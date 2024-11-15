@@ -3,7 +3,7 @@ name: Test Called
 on:
   push:
     branches:
-    - 'master'
+    - 'main'
     - 'release-*'
   # Allow this workflow to be called  by others
   workflow_call:
