@@ -12,8 +12,8 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-    - name: "check is USELESS_SECRET exists"
+      - name: "check is USELESS_SECRET exists"
         env: 
-            super_secret: ${{ secrets.USELESS_SECRET }}
+          super_secret: ${{ secrets.USELESS_SECRET }}
         if: ${{ env.super_secret == '' }}
         run: echo "the secret \'USELESS_SECRET\' does not exist"
