@@ -1,21 +1,8 @@
-# AstarteAppengineApi
+Astarte App Engine
+==================
 
-**TODO: Add description**
+<img src="appengine_astarte_overview.svg" align="center" />
 
-## Installation
+Astarte App Engine serves a [REST API](priv/static/astarte_appengine_api.yaml) that allows applications to gather and send data to the devices fleet.
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `astarte_appengine_api` to your list of dependencies in `mix.exs`:
-
-```elixir
-def deps do
-  [
-    {:astarte_appengine_api, "~> 0.1.0"}
-  ]
-end
-```
-
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at <https://hexdocs.pm/astarte_appengine_api>.
-
+REST API documentation can be viewed at http://appenginehost:4002/swagger/ .
